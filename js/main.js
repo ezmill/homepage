@@ -3,7 +3,8 @@
   var canvas = document.getElementById('canvas'),
       ctx = canvas.getContext('2d'),
       positionsX = [],
-      positionsY = [];
+      positionsY = [],
+      val = document.getElementById('val').value;
   // positionsX.length = 100;
   // positionsY.length = 100;
   canvas.width = 1280;
@@ -30,17 +31,15 @@
     for (var i = 0; i < positionsX.length; i++) {
       var dist = distance(positionsX[i], positionsY[i], x,y);
       var r = Math.random()*100;
-      if(dist < 40 && r < 40){
+      if(dist < val && r < val){
+        var opacity = 0.2;//1-dist/val;
         ctx.beginPath()
         ctx.moveTo(positionsX[i],positionsY[i]);
         ctx.lineTo(x,y)
-        ctx.strokeStyle = 'rgba(255,255,255, 0.3)';
+        ctx.strokeStyle = 'rgba(255,255,255, ' + opacity + ')';
         ctx.stroke();
       }
     };
-    // var incrementer = Math.random()*Math.PI;
-  
-
   }
 
   function distance(x1, y1, x2, y2){
@@ -48,4 +47,7 @@
     return distance;
   }
 
+  function updateVal(){
+    val = document.getElementById('val');
+  }
 }())
