@@ -4,7 +4,7 @@
       ctx = canvas.getContext('2d'),
       positionsX = [],
       positionsY = [],
-      val = document.getElementById('val').value;
+      val = 50;
   // positionsX.length = 100;
   // positionsY.length = 100;
   canvas.width = 1280;
@@ -45,9 +45,5 @@
   function distance(x1, y1, x2, y2){
     var distance = Math.sqrt(((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)))
     return distance;
-  }
-
-  function updateVal(){
-    val = document.getElementById('val');
   }
 }())
