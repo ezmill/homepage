@@ -18,6 +18,7 @@
   }
 
   canvas.addEventListener('mousemove',function(evt){
+    evt.preventDefault();
     var mousePos = getMousePos(canvas,evt);
     var x = mousePos.x;
     var y = mousePos.y;
@@ -32,7 +33,7 @@
       var dist = distance(positionsX[i], positionsY[i], x,y);
       var r = Math.random()*100;
       if(dist < val && r < val){
-        var opacity = 0.2;//1-dist/val;
+        var opacity = 0.1;//1-dist/val;
         ctx.beginPath()
         ctx.moveTo(positionsX[i],positionsY[i]);
         ctx.lineTo(x,y)
@@ -47,3 +48,35 @@
     return distance;
   }
 }())
+var flag=true;
+$(document).ready(function(){
+  $('p').hide();
+  $('#box').hide();
+  $('a').click(function(){
+    $('#box').show();
+    if(flag){
+    $('#box').animate({
+      // "display": "block"
+      border:"solid 2px",
+      height: "+=400",
+      width: "+=800"
+    },"fast" )
+    flag = false;
+  }
+
+    if($(this).text() === "WORK"){
+      $('p').hide();
+      $('#work-p').show();
+    }
+    if($(this).text() === "BLOG"){
+      $('p').hide();
+      $('#blog-p').show();
+    }
+    if($(this).text() === "ABOUT"){
+      $('p').hide();
+      $('#about-p').show();
+      console.log("yes")
+    }
+});
+});
+
