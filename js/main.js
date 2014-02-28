@@ -53,8 +53,9 @@ $(document).ready(function(){
   $('p').hide();
   $('#box').hide();
   $('a').click(function(){
-    $('#box').show();
+    
     if(flag){
+    $('#box').show();
     $('#box').animate({
       // "display": "block"
       border:"solid 2px",
@@ -63,6 +64,9 @@ $(document).ready(function(){
     },"fast" )
     flag = false;
   }
+
+
+
 
     if($(this).text() === "WORK"){
       $('p').hide();
@@ -77,6 +81,20 @@ $(document).ready(function(){
       $('#about-p').show();
       console.log("yes")
     }
-});
+    // $("#box").toggle();
+  });
+  $('canvas').click(function(){
+    
+    if(!flag){
+    $('p').hide();
+    $('#box').animate({
+      // "display": "block"
+      border:"solid 0px",
+      height: "-=400",
+      width: "-=800"
+    },"fast" )
+    flag = true;
+    }
+  });
 });
 
