@@ -97,3 +97,9 @@ $(document).ready(function(){
   }).css();
 });
 
+// $('#box div').click(function(){
+//   $(this).css('color') = 
+// });
+// $('#box div').each(function(){
+//   $(this).css('color',"")
+// })
