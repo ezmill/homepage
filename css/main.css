@@ -14,12 +14,12 @@ body{
 h1{
 	font-family: 'Oswald', sans-serif;
 	font-style: bold;
-	color: white;
-	opacity: 0.2;
+	color: black;
+	text-shadow:5px 5px 0px #00FF00;
 	margin: 10px;
 	font-size: 128px;
 	position: absolute;
-	top: 30px;
+	top: 20px;
 	z-index: -1;
 }
 div#main {
@@ -36,7 +36,7 @@ div#box{
 	background-color: black;
 	position: absolute;
 	margin: 10px;
-	border: solid 2px;
+	border: solid 2px;	
 	/*display: none;*/
 	/*z-index: -2;*/
 	border-color: white;
@@ -63,15 +63,9 @@ canvas{
 	/*padding: 0;*/
 display: inline-block;
 }
-p{
+.para{
 	color: white;
-}
-#work-p(){
-	display:none;
-}
-.displayed{
-
-	display: inline-block;
+	margin: 20px;
 }
 
 

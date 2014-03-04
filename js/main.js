@@ -8,7 +8,7 @@
   // positionsX.length = 100;
   // positionsY.length = 100;
   canvas.width = 1280;
-  canvas.height = 500;
+  canvas.height = 800;
   function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
       return {
@@ -23,8 +23,6 @@
     var x = mousePos.x;
     var y = mousePos.y;
     drawLines(x,y);
-
-
   }, false);
   function drawLines(x,y){
     positionsX.push(x);
@@ -48,6 +46,7 @@
     return distance;
   }
 }())
+
 var flag=true;
 $(document).ready(function(){
   $('p').hide();
@@ -83,18 +82,18 @@ $(document).ready(function(){
     }
     // $("#box").toggle();
   });
-  $('canvas').click(function(){
+  $('canvas, #box').click(function(){
     
     if(!flag){
     $('p').hide();
     $('#box').animate({
       // "display": "block"
-      border:"solid 0px",
+      // border:"none",
       height: "-=400",
       width: "-=800"
     },"fast" )
     flag = true;
     }
-  });
+  }).css();
 });
 
