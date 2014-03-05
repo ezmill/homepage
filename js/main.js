@@ -37,7 +37,7 @@ var color = 'rgba(255,255,255, ' + opacity + ')';
     };
   }
 
-  canvas.addEventListener('mousemove touchmove',function(evt){
+  canvas.addEventListener('mousemove',function(evt){
     evt.preventDefault();
     var mousePos = getMousePos(canvas,evt);
     var x = mousePos.x;
