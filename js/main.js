@@ -1,6 +1,5 @@
 var opacity = 0.1;
 var color = 'rgba(255,255,255, ' + opacity + ')';
-(function () {
 
   var canvas = document.getElementById('canvas'),
       ctx = canvas.getContext('2d'),
@@ -9,8 +8,27 @@ var color = 'rgba(255,255,255, ' + opacity + ')';
       val = 50;
   // positionsX.length = 100;
   // positionsY.length = 100;
-  canvas.width = 1280;
-  canvas.height = 800;
+  ctx.canvas.width  = window.innerWidth;
+   ctx.canvas.height = window.innerHeight;
+  function resize_canvas(){
+            if (canvas.width  < window.innerWidth || canvas.width  > window.innerWidth)
+            {
+                canvas.width  = window.innerWidth;
+            }
+
+            if (canvas.height < window.innerHeight || canvas.height > window.innerHeight )
+            {
+                canvas.height = window.innerHeight;
+            }
+        }
+  $(window).resize(resize_canvas);
+(function () {
+
+  // window.onresize = build;
+  // function build(){
+  //   canvas.width = canvas.offsetWidth;
+  //   canvas.height = canvas.offsetHeight;
+  // }
   function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
       return {
