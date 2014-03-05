@@ -10,6 +10,7 @@ if (navigator.getUserMedia) {
  
 function success(stream) {
     video.src = window.URL.createObjectURL(stream);
+    webkitRequestAnimationFrame(paintOnCanvas);
 
 }
  
@@ -22,4 +23,39 @@ function setup(stream){
 	canvas.height = 480;
 	video.src = window.URL.createObjectURL(stream);
 	ctx.drawImage(video, canvas.width, canvas.height);
+}
+//constructor thing  http://www.phpied.com/canvas-pixels-3-getusermedia/
+function CanvasImage(canvas, src) {
+  // load image in canvas
+  var context = canvas.getContext('2d');
+  var i = new Image();
+  var that = this;
+  i.onload = function(){
+    canvas.width = i.width;
+    canvas.height = i.height;
+    context.drawImage(i, 0, 0, i.width, i.height);
+ 
+    // remember the original pixels
+    that.original = that.getData();
+  };
+  i.src = src;
+  
+  // cache these
+  this.context = context;
+  this.image = i;
+}
+
+function paintOnCanvas() {
+  var transformador = transformadores[0];
+  transformador.context.drawImage(
+    $('video'), 0, 0, 
+    transformador.image.width, transformador.image.height
+  );
+  var data = transformador.getData();
+  for (var i = 0; i < 4; i++) {
+    transformador = transformadores[i];
+    transformador.original = data;
+    transformador.transform(manipuladors[i].cb);
+  }
+  webkitRequestAnimationFrame(paintOnCanvas);
 }
