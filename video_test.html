@@ -28,24 +28,9 @@
      
     </video>
 </div>
-<!-- <script src="webcam.js"></script> -->
-<script>
-	var video = document.querySelector("#videoElement");
-	 
-	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-	 
-	if (navigator.getUserMedia) {       
-	    navigator.getUserMedia({video: true}, handleVideo, videoError);
-	}
-	 
-	function handleVideo(stream) {
-	    video.src = window.URL.createObjectURL(stream);
-	}
-	 
-	function videoError(e) {
-	    // do something
-	}
-</script>
+<canvas id="canvas"></canvas>
+<script src="webcam.js"></script>
+
 
 </body>
 </html>

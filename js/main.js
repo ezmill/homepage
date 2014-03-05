@@ -1,3 +1,5 @@
+var opacity = 0.1;
+var color = 'rgba(255,255,255, ' + opacity + ')';
 (function () {
 
   var canvas = document.getElementById('canvas'),
@@ -31,11 +33,11 @@
       var dist = distance(positionsX[i], positionsY[i], x,y);
       var r = Math.random()*100;
       if(dist < val && r < val){
-        var opacity = 0.1;//1-dist/val;
+      //1-dist/val;
         ctx.beginPath()
         ctx.moveTo(positionsX[i],positionsY[i]);
         ctx.lineTo(x,y)
-        ctx.strokeStyle = 'rgba(255,255,255, ' + opacity + ')';
+        ctx.strokeStyle = color;
         ctx.stroke();
       }
     };
@@ -95,11 +97,47 @@ $(document).ready(function(){
     flag = true;
     }
   }).css();
-});
 
-// $('#box div').click(function(){
-//   $(this).css('color') = 
-// });
-// $('#box div').each(function(){
-//   $(this).css('color',"")
-// })
+
+});
+  
+// var colors = ['rgba(255,255,255, ','rgba(255,0,0, ','rgba(0,255,0, ','rgba(0,0,255, ' ];
+//   console.log(colors[0]);
+//   $('#box div').each(function(index){
+//      var col = colors[index];
+//       $(this).click(function(){
+//         $(this).addClass('clicked')
+//         color =  col + opacity + ')';
+//       })
+//   })
+var colorDivs = $("#colors div");
+  $('.white').click(function(evt){
+      colorDivs.each(function(){
+        $(this).removeClass("clicked");
+      });
+      $(this).addClass('clicked');
+      color = 'rgba(255,255,255, ' + opacity + ')';
+  });
+  $('.red').click(function(evt){
+      colorDivs.each(function(){
+        $(this).removeClass("clicked");
+      });
+      $(this).addClass('clicked');
+      color = 'rgba(255,0,0, ' + opacity + ')';
+  });
+  $('.green').click(function(evt){
+      colorDivs.each(function(){
+        $(this).removeClass("clicked");
+      });
+      $(this).addClass('clicked');
+      color = 'rgba(0,255,0, ' + opacity + ')';
+  });
+  $('.blue').click(function(evt){
+      colorDivs.each(function(){
+        $(this).removeClass("clicked");
+      });
+      $(this).addClass('clicked');
+      color = 'rgba(0,0,255, ' + opacity + ')';
+  });
+
+
