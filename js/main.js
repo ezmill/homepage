@@ -1,6 +1,5 @@
 var opacity = 0.1;
 var color = 'rgba(255,255,255, ' + opacity + ')';
-<<<<<<< HEAD
 var canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     positionsX = [],
@@ -20,7 +19,6 @@ function resize_canvas(){
 $(window).resize(resize_canvas);
 (function () {
 
-=======
 
   var canvas = document.getElementById('canvas'),
       ctx = canvas.getContext('2d'),
@@ -50,7 +48,6 @@ $(window).resize(resize_canvas);
   //   canvas.width = canvas.offsetWidth;
   //   canvas.height = canvas.offsetHeight;
   // }
->>>>>>> FETCH_HEAD
   function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
       return {

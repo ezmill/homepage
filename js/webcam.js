@@ -46,17 +46,17 @@ function CanvasImage(canvas, src) {
 }
 
 function paintOnCanvas() {
-<<<<<<< HEAD
+
   var transformador = new CanvasImage($('#canvas'),'plant1.jpg');
-=======
+
   var transformador = transformadores[0];
->>>>>>> FETCH_HEAD
+
   transformador.context.drawImage(
     $('video'), 0, 0, 
     transformador.image.width, transformador.image.height
   );
   var data = transformador.getData();
-<<<<<<< HEAD
+
   transformador.transform(manipuladors[1].cb);
   webkitRequestAnimationFrame(paintOnCanvas);
 }
@@ -119,7 +119,7 @@ CanvasImage.prototype.transform = function(fn, factor) {
   this.setData(newdata);
 };
 
-=======
+
   for (var i = 0; i < 4; i++) {
     transformador = transformadores[i];
     transformador.original = data;
@@ -127,4 +127,4 @@ CanvasImage.prototype.transform = function(fn, factor) {
   }
   webkitRequestAnimationFrame(paintOnCanvas);
 }
->>>>>>> FETCH_HEAD
+
