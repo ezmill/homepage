@@ -1,16 +1,24 @@
 var opacity = 0.1;
 var color = 'rgba(255,255,255, ' + opacity + ')';
+var canvas = document.getElementById('canvas'),
+    ctx = canvas.getContext('2d'),
+    positionsX = [],
+    positionsY = [],
+    val = 50;
+
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+function resize_canvas(){
+    if (canvas.width  < window.innerWidth || canvas.width  > window.innerWidth){
+        canvas.width  = window.innerWidth;
+    }
+    if (canvas.height < window.innerHeight || canvas.height > window.innerHeight ){
+        canvas.height = window.innerHeight;
+    }
+}
+$(window).resize(resize_canvas);
 (function () {
 
-  var canvas = document.getElementById('canvas'),
-      ctx = canvas.getContext('2d'),
-      positionsX = [],
-      positionsY = [],
-      val = 50;
-  // positionsX.length = 100;
-  // positionsY.length = 100;
-  canvas.width = 1280;
-  canvas.height = 800;
   function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
       return {
