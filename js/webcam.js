@@ -48,7 +48,7 @@ var manipuladors = [
   }
 ];
 
-function CanvasImage(canvas, src) {
+function CanvasImage(cvs, src) {
   // load image in canvas
   var context = cvs.getContext('2d');
   var i = new Image();
