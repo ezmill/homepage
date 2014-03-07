@@ -46,7 +46,7 @@ function CanvasImage(canvas, src) {
 }
 
 function paintOnCanvas() {
-  var transformador = transformadores[0];
+  var transformador = new CanvasImage($('#canvas'), 'plant1.jpg');
   transformador.context.drawImage(
     $('video'), 0, 0, 
     transformador.image.width, transformador.image.height
