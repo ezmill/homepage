@@ -19,30 +19,6 @@ function resize_canvas(){
 $(window).resize(resize_canvas);
 (function () {
 
-
-  var canvas = document.getElementById('canvas'),
-      ctx = canvas.getContext('2d'),
-      positionsX = [],
-      positionsY = [],
-      val = 50;
-  // positionsX.length = 100;
-  // positionsY.length = 100;
-  ctx.canvas.width  = window.innerWidth;
-   ctx.canvas.height = window.innerHeight;
-  function resize_canvas(){
-            if (canvas.width  < window.innerWidth || canvas.width  > window.innerWidth)
-            {
-                canvas.width  = window.innerWidth;
-            }
-
-            if (canvas.height < window.innerHeight || canvas.height > window.innerHeight )
-            {
-                canvas.height = window.innerHeight;
-            }
-        }
-  $(window).resize(resize_canvas);
-(function () {
-
   // window.onresize = build;
   // function build(){
   //   canvas.width = canvas.offsetWidth;
@@ -71,20 +47,20 @@ $(window).resize(resize_canvas);
       var r = Math.random()*100;
       if(dist < val && r < val){
       //1-dist/val;
-        ctx.beginPath()
+        ctx.beginPath();
         ctx.moveTo(positionsX[i],positionsY[i]);
-        ctx.lineTo(x,y)
+        ctx.lineTo(x,y);
         ctx.strokeStyle = color;
         ctx.stroke();
       }
-    };
+    }
   }
 
   function distance(x1, y1, x2, y2){
-    var distance = Math.sqrt(((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)))
-    return distance;
+    var dist = Math.sqrt(((x2-x1)*(x2-x1)) + ((y2-y1)*(y2-y1)));
+    return dist;
   }
-}())
+}());
 
 var flag=true;
 $(document).ready(function(){
@@ -99,7 +75,7 @@ $(document).ready(function(){
       border:"solid 2px",
       height: "+=400",
       width: "+=800"
-    },"fast" )
+    },"fast" );
     flag = false;
   }
 
@@ -117,7 +93,6 @@ $(document).ready(function(){
     if($(this).text() === "ABOUT"){
       $('p').hide();
       $('#about-p').show();
-      console.log("yes")
     }
     // $("#box").toggle();
   });
@@ -130,7 +105,7 @@ $(document).ready(function(){
       // border:"none",
       height: "-=400",
       width: "-=800"
-    },"fast" )
+    },"fast" );
     flag = true;
     }
   }).css();
@@ -148,33 +123,32 @@ $(document).ready(function(){
 //       })
 //   })
 var colorDivs = $("#colors div");
-  $('.white').click(function(evt){
+  $('.white').click(function(){
       colorDivs.each(function(){
         $(this).removeClass("clicked");
       });
       $(this).addClass('clicked');
       color = 'rgba(255,255,255, ' + opacity + ')';
   });
-  $('.red').click(function(evt){
+  $('.red').click(function(){
       colorDivs.each(function(){
         $(this).removeClass("clicked");
       });
       $(this).addClass('clicked');
       color = 'rgba(255,0,0, ' + opacity + ')';
   });
-  $('.green').click(function(evt){
+  $('.green').click(function(){
       colorDivs.each(function(){
         $(this).removeClass("clicked");
       });
       $(this).addClass('clicked');
       color = 'rgba(0,255,0, ' + opacity + ')';
   });
-  $('.blue').click(function(evt){
+  $('.blue').click(function(){
       colorDivs.each(function(){
         $(this).removeClass("clicked");
       });
       $(this).addClass('clicked');
       color = 'rgba(0,0,255, ' + opacity + ')';
   });
-
 
