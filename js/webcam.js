@@ -30,7 +30,7 @@ function setup(stream){
 }
 
 function draw(){
-  video.onloadedmetadata = function(e) {
+  // video.onloadedmetadata = function(e) {
     ctx.drawImage(video, 0, 0);  
     videoPixels = ctx.getImageData(0,0,width,height)
     videoPixelData = videoPixels.data;
@@ -45,7 +45,6 @@ function draw(){
     if (frames.length > width/4) {
       frames.shift();
     }
-  };
   var currentImage = 0;
   //loadPixels();
   for (var y = 0; y < height; y+=barWidth) {
