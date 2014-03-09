@@ -1,6 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Mono);
 @import url(http://fonts.googleapis.com/css?family=Oswald:700);
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 html, body {
   padding: 0;
   margin: 0;
@@ -26,24 +31,19 @@ div#main {
 	position: absolute;
 	top: 170px;
 	left: 50;
-	/*width: 250px;
-	height: 200px;
-*/	margin: 0 auto;
+	margin: 0 auto;
 }
 div#box{
-	/*width: 100%;
-	height: 100%;*/
 	background-color: black;
 	position: absolute;
 	margin: 10px;
 	border: solid 2px;	
-	/*display: none;*/
-	/*z-index: -2;*/
 	border-color: white;
-	height: 0px;
+/*	max-width: 800px;
+	max-height: 400px;*/
 }
 div#colors{
-		position: absolute;
+	position: absolute;
 	top: 100px;
 	right: 50px; 
 }
@@ -63,7 +63,6 @@ span{
 
 }
 
-
 a{
 	color: inherit;
 	text-decoration: none;
@@ -72,11 +71,9 @@ a:hover{
 	text-decoration: underline;
 }
 
+
 canvas{
-/*	width: 100%;
-	height: 100%;*/
-	/*padding: 0;*/
-display: inline-block;
+	display: inline-block;
 }
 .para{
 	color: white;
@@ -97,4 +94,10 @@ display: inline-block;
 
 .clicked{
 	border: solid 2.5px white;
+}
+.white-clicked{
+	border: solid 2.5px black;
+}
+.link-clicked{
+	text-decoration: underline;
 }

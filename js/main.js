@@ -18,12 +18,6 @@ function resize_canvas(){
 }
 $(window).resize(resize_canvas);
 (function () {
-
-  // window.onresize = build;
-  // function build(){
-  //   canvas.width = canvas.offsetWidth;
-  //   canvas.height = canvas.offsetHeight;
-  // }
   function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
       return {
@@ -67,11 +61,12 @@ $(document).ready(function(){
   $('p').hide();
   $('#box').hide();
   $('a').click(function(){
-    
+        $('a').removeClass('link-clicked');
+
+    $(this).addClass('link-clicked');
     if(flag){
     $('#box').show();
     $('#box').animate({
-      // "display": "block"
       border:"solid 2px",
       height: "+=400",
       width: "+=800"
@@ -94,15 +89,12 @@ $(document).ready(function(){
       $('p').hide();
       $('#about-p').show();
     }
-    // $("#box").toggle();
   });
-  $('canvas, #box').click(function(){
+  $('a').click(function(){
     
     if(!flag){
     $('p').hide();
     $('#box').animate({
-      // "display": "block"
-      // border:"none",
       height: "-=400",
       width: "-=800"
     },"fast" );
@@ -113,42 +105,20 @@ $(document).ready(function(){
 
 });
   
-// var colors = ['rgba(255,255,255, ','rgba(255,0,0, ','rgba(0,255,0, ','rgba(0,0,255, ' ];
-//   console.log(colors[0]);
-//   $('#box div').each(function(index){
-//      var col = colors[index];
-//       $(this).click(function(){
-//         $(this).addClass('clicked')
-//         color =  col + opacity + ')';
-//       })
-//   })
-var colorDivs = $("#colors div");
-  $('.white').click(function(){
-      colorDivs.each(function(){
-        $(this).removeClass("clicked");
-      });
-      $(this).addClass('clicked');
-      color = 'rgba(255,255,255, ' + opacity + ')';
-  });
-  $('.red').click(function(){
-      colorDivs.each(function(){
-        $(this).removeClass("clicked");
-      });
-      $(this).addClass('clicked');
-      color = 'rgba(255,0,0, ' + opacity + ')';
-  });
-  $('.green').click(function(){
-      colorDivs.each(function(){
-        $(this).removeClass("clicked");
-      });
-      $(this).addClass('clicked');
-      color = 'rgba(0,255,0, ' + opacity + ')';
-  });
-  $('.blue').click(function(){
-      colorDivs.each(function(){
-        $(this).removeClass("clicked");
-      });
-      $(this).addClass('clicked');
-      color = 'rgba(0,0,255, ' + opacity + ')';
-  });
+var colors = ['rgba(255,255,255, ','rgba(255,0,0, ','rgba(0,255,0, ','rgba(0,0,255, '];
+console.log(colors[0]);
+$('.white').addClass('white-clicked')
+$('#colors div').each(function(index){
+   var col = colors[index];
+    $(this).click(function(){
+      $('#colors div').removeClass('clicked');
+      $('#colors div').removeClass('white-clicked');
+      if(!$(this).hasClass('white')){
+        $(this).addClass('clicked')
+      } else{
+        $(this).addClass('white-clicked')
+      }
+      color =  col + opacity + ')';
+    })
+})
 

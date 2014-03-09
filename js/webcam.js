@@ -1,7 +1,9 @@
 var video = document.querySelector("#videoElement");
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext('2d');
- 
+var width = 640;
+var height = 480;
+
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
  
 if (navigator.getUserMedia) {       
@@ -9,93 +11,63 @@ if (navigator.getUserMedia) {
 }
  
 function success(stream) {
-    video.src = window.URL.createObjectURL(stream);
-    webkitRequestAnimationFrame(paintOnCanvas);
-
+    //video.src = window.URL.createObjectURL(stream);
+    setup(stream);
+    captureEvent();
+    window.requestAnimationFrame(draw);
 }
  
 function failure(e) {
     console.log("nope lol")
 }
 
-// function setup(stream){
-// 	canvas.width = 640;
-// 	canvas.height = 480;
-// 	video.src = window.URL.createObjectURL(stream);
-// 	ctx.drawImage(video, canvas.width, canvas.height);
-// }
-//constructor thing  http://www.phpied.com/canvas-pixels-3-getusermedia/
+var frames = [];
+var barWidth = 3;
 
-function paintOnCanvas() {
-  var transformador = new CanvasImage(canvas, 'plant1.jpg');
-  transformador.context.drawImage(
-    video, 0, 0, 
-    transformador.image.width, transformador.image.height
-  );
-  var data = transformador.getData();
-    transformador.original = data;
-    transformador.transform(manipuladors[0].cb);
-
-  webkitRequestAnimationFrame(paintOnCanvas);
+function setup(stream){
+	canvas.width = width;
+	canvas.height = height;
+	video.src = window.URL.createObjectURL(stream);
 }
 
-var manipuladors = [
-  {
-    name: 'negative',
-    cb: function(r, g, b) {
-      return [255 - r, 255 - g, 255 - b, 255];
+function draw(){
+  video.onloadeddata = function(e) {
+    ctx.drawImage(video, 0, 0);  
+    videoPixels = ctx.getImageData(0,0,width,height)
+    videoPixelData = videoPixels.data;
+    imagePixels = ctx.createImageData(width,height);
+    imagePixelData = imagePixels.data;
+    for (var i = 0; i<videoPixelData.length; i++){
+      videoPixelData[i] = imagePixelData[i];
     }
-  }
-];
 
-function CanvasImage(cvs, src) {
-  // load image in canvas
-  var context = cvs.getContext('2d');
-  var i = new Image();
-  var that = this;
-  i.onload = function(){
-    canvas.width = i.width;
-    canvas.height = i.height;
-    context.drawImage(i, 0, 0, i.width, i.height);
-
-    // remember the original pixels
-    that.original = that.getData();
+    frames.push(img);
+    
+    if (frames.size() > width/4) {
+      frames.shift();
+    }
   };
-  i.src = src;
-  
-  // cache these
-  this.context = context;
-  this.image = i;
-}
-
-CanvasImage.prototype.getData = function() {
-  return this.context.getImageData(0, 0, this.image.width, this.image.height);
-};
-
-CanvasImage.prototype.setData = function(data) {
-  return this.context.putImageData(data, 0, 0);
-};
-
-CanvasImage.prototype.reset = function() {
-  this.setData(this.original);
-}
-
-CanvasImage.prototype.transform = function(fn, factor) {
-  var olddata = this.original;
-  var oldpx = olddata.data;
-  var newdata = this.context.createImageData(olddata);
-  var newpx = newdata.data
-  var res = [];
-  var len = newpx.length;
-  for (var i = 0; i < len; i += 4) {
-   res = fn.call(this, oldpx[i], oldpx[i+1], oldpx[i+2], oldpx[i+3], factor, i);
-   newpx[i]   = res[0]; // r
-   newpx[i+1] = res[1]; // g
-   newpx[i+2] = res[2]; // b
-   newpx[i+3] = res[3]; // a
+  var currentImage = 0;
+  //loadPixels();
+  for (var y = 0; y < height; y+=barWidth) {
+    if(currentImage < frames.length){
+       var img = frames[currentImage];
+      if (img != null){
+        //img.loadPixels();
+        for(var x = 0; x < width; x+=barWidth){
+          for(var i = 0; i < barWidth; i++){
+              videoPixelData[x + (y + i) * width] = imagePixelData[x + (y + i) * width];
+          }
+        }
+      } 
+        currentImage++;
+    } else {
+        break;
+    }  
   }
-  this.setData(newdata);
-};
+  window.requestAnimationFrame(draw);
+}
 
 
+//constructor thing  http://www.phpied.com/canvas-pixels-3-getusermedia/
 
