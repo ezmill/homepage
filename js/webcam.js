@@ -13,7 +13,6 @@ if (navigator.getUserMedia) {
 function success(stream) {
     //video.src = window.URL.createObjectURL(stream);
     setup(stream);
-    captureEvent();
     window.requestAnimationFrame(draw);
 }
  
@@ -40,7 +39,7 @@ function draw(){
     for (var i = 0; i<videoPixelData.length; i++){
       videoPixelData[i] = imagePixelData[i];
     }
-
+    console.log(imagePixelData)
     frames.push(img);
     
     if (frames.size() > width/4) {
