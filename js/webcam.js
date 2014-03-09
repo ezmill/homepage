@@ -30,7 +30,7 @@ function setup(stream){
 }
 
 function draw(){
-  video.onloadeddata = function(e) {
+  video.onloadedmetadata = function(e) {
     ctx.drawImage(video, 0, 0);  
     videoPixels = ctx.getImageData(0,0,width,height)
     videoPixelData = videoPixels.data;
@@ -42,7 +42,7 @@ function draw(){
     console.log(imagePixelData)
     frames.push(img);
     
-    if (frames.size() > width/4) {
+    if (frames.length > width/4) {
       frames.shift();
     }
   };
