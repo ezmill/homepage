@@ -49,7 +49,10 @@ var currentImage = 0;
 function draw(){
 
   var frame = readFrame();
-  frames.push(frame);
+  
+  var imagePixels = ctx.createImageData(width,height);
+  imagePixels.data = frame.data;
+  frames.push(imagePixels);
   if(frames.length > width/4){
     frames.shift();
   }
@@ -61,8 +64,11 @@ function draw(){
         img.data;
         for(var x = 0; x < width; x+=barWidth){
           for(var i = 0; i < barWidth; i++){
-            console.log(frame.data[x + (y + i) * width]);
-              frame.data[x + (y + i) * width] = img.data[x + (y + i) * width];
+              var location = (x + (y + i) * width)*4
+              frame.data[location] = img.data[location];
+              frame.data[location+1] = img.data[location+1];
+              frame.data[location+2] = img.data[location+2];
+              frame.data[location+3] = img.data[location+3];
           }
         }
       } 
