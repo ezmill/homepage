@@ -53,7 +53,6 @@ function draw(){
   if(frames.length > width/4){
     frames.shift();
   }
-  console.log(frames);
 
   for (var y = 0; y < height; y+=barWidth) {
     if(currentImage < frames.length){
@@ -62,6 +61,7 @@ function draw(){
         img.data;
         for(var x = 0; x < width; x+=barWidth){
           for(var i = 0; i < barWidth; i++){
+            console.log(frame.data[x + (y + i) * width]);
               frame.data[x + (y + i) * width] = img.data[x + (y + i) * width];
           }
         }
