@@ -1,8 +1,8 @@
 var video = document.querySelector("#videoElement");
 var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext('2d');
-var width = 640;
-var height = 480;
+var width = 500;
+var height = 375;
 canvas.width = width;
 canvas.height = height;
 
