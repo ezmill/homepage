@@ -58,7 +58,6 @@ function draw(){
   for (var y = 0; y < height; y+=barWidth) {
     if(currentImage < frames.length){
        var img = frames[currentImage];
-       var video = 
       if (img != null){
         img.data;
         for(var x = 0; x < width; x+=barWidth){
