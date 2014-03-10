@@ -90,7 +90,7 @@ $(document).ready(function(){
       $('#about-p').show();
     }
   });
-  $('a').click(function(){
+  $('canvas, #box').click(function(){
     
     if(!flag){
     $('p').hide();
