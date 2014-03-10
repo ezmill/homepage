@@ -45,23 +45,26 @@ var barWidth = 3;
   //   }
 //  };
 //}
-var currentImage = 0;
 function draw(){
 
   var frame = readFrame();
   
   var imagePixels = ctx.createImageData(width,height);
-  imagePixels.data = frame.data;
+  
+  for(var i = 0; i < frame.data.length; i++){
+    imagePixels.data[i] = frame.data[i];
+  }
+
   frames.push(imagePixels);
   if(frames.length > width/4){
     frames.shift();
   }
+  var currentImage = 0;
 
   for (var y = 0; y < height; y+=barWidth) {
     if(currentImage < frames.length){
-       var img = frames[currentImage];
+      var img = frames[currentImage];
       if (img != null){
-        img.data;
         for(var x = 0; x < width; x+=barWidth){
           for(var i = 0; i < barWidth; i++){
               var location = (x + (y + i) * width)*4
@@ -77,7 +80,7 @@ function draw(){
         break;
     }  
   }
-  ctx.putImageData(imagePixels,0,0);
+  ctx.putImageData(frame,0,0);
   window.requestAnimationFrame(draw);
 }
 
