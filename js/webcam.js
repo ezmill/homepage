@@ -24,7 +24,7 @@ function failure(e) {
 }
 
 var frames = [];
-var barWidth = 3;
+var barWidth = 100;
 
 //function setup(stream){
 
@@ -65,7 +65,7 @@ function draw(){
     if(currentImage < frames.length){
       var img = frames[currentImage];
       if (img != null){
-        for(var x = 0; x < width; x+=barWidth){
+        for(var x = 0; x < width; x++){
           for(var i = 0; i < barWidth; i++){
               var location = (x + (y + i) * width)*4
               frame.data[location] = img.data[location];
