@@ -77,7 +77,7 @@ function draw(){
         break;
     }  
   }
-  ctx.putImageData(frame,0,0);
+  ctx.putImageData(imagePixels,0,0);
   window.requestAnimationFrame(draw);
 }
 
