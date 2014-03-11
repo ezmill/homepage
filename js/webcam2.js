@@ -81,7 +81,7 @@ function draw(){
   //   }  
   // }
   for (var i = frames.length - 1; i >= 0; i--) {
-    ctx.putImageData(frame[i],0,0);
+    ctx.putImageData(frames[i],0,0);
   };
   
   //window.requestAnimationFrame(draw);
