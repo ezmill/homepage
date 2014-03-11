@@ -24,7 +24,7 @@ function failure(e) {
 }
 
 var frames = [];
-var barWidth = 3;
+var barWidth = height/4;
 
 //function setup(stream){
 
