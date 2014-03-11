@@ -80,9 +80,21 @@ function draw(){
   //       break;
   //   }  
   // }
-  for (var i = frames.length - 1; i >= 0; i--) {
-    ctx.putImageData(frames[i],0,0);
-  };
+var currentImage = 0;
+  for(var x = 0; x < width; x++){
+    for(var y = 0; y < height; y++){
+          var img = frames[currentImage];
+
+      for(var i = 1; i<10; i++){
+              var location = (x + (y * width))*4
+              frame.data[location+1] = img.data[location+1];
+              frame.data[location+2] = img.data[location+2];
+              frame.data[location+3] = img.data[location+3]/i;
+      }
+    }
+  }
+  currentImage++;
+    ctx.putImageData(frame,0,0);
   
   //window.requestAnimationFrame(draw);
 }
