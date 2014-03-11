@@ -85,13 +85,14 @@ var currentImage = 0;
     for(var y = 0; y < height; y++){
           var img = frames[currentImage];
 
-      for(var i = 1; i<10; i++){
               var location = (x + (y * width))*4
+              frame.data[location] = img.data[location];
+
               frame.data[location+1] = img.data[location+1];
               frame.data[location+2] = img.data[location+2];
-              frame.data[location+3] = img.data[location+3]/i;
-      }
-    }
+              frame.data[location+3] = img.data[location+3];
+      
+          }
   }
   currentImage++;
     ctx.putImageData(frame,0,0);
