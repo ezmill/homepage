@@ -16,7 +16,7 @@ function success(stream) {
     video.src = window.URL.createObjectURL(stream);
     video.play();
      //setup(stream);
-    window.requestAnimationFrame(draw);
+    setInterval(function(){draw();},3000);
 }
  
 function failure(e) {
@@ -56,32 +56,32 @@ function draw(){
   }
 
   frames.push(imagePixels);
-  if(frames.length > width/4){
-    frames.shift();
-  }
-  var currentImage = 0;
+  // if(frames.length > width/4){
+  //   frames.shift();
+  // }
+  //var currentImage = 0;
 
-  for (var y = 0; y < height; y+=barWidth) {
-    if(currentImage < frames.length){
-      var img = frames[currentImage];
-      if (img != null){
-        for(var x = 0; x < width; x++){
-          for(var i = 0; i < barWidth; i++){
-              var location = (x + (y + i) * width)*4
-              frame.data[location] = img.data[location];
-              frame.data[location+1] = img.data[location+1];
-              frame.data[location+2] = img.data[location+2];
-              frame.data[location+3] = img.data[location+3];
-          }
-        }
-      } 
-        currentImage++;
-    } else {
-        break;
-    }  
-  }
+  // for (var y = 0; y < height; y+=barWidth) {
+  //   if(currentImage < frames.length){
+  //     var img = frames[currentImage];
+  //     if (img != null){
+  //       for(var x = 0; x < width; x++){
+  //         for(var i = 0; i < barWidth; i++){
+  //             var location = (x + (y + i) * width)*4
+  //             frame.data[location] = img.data[location];
+  //             frame.data[location+1] = img.data[location+1];
+  //             frame.data[location+2] = img.data[location+2];
+  //             frame.data[location+3] = img.data[location+3];
+  //         }
+  //       }
+  //     } 
+  //       currentImage++;
+  //   } else {
+  //       break;
+  //   }  
+  // }
   ctx.putImageData(frame,0,0);
-  window.requestAnimationFrame(draw);
+  //window.requestAnimationFrame(draw);
 }
 
 function readFrame() {
