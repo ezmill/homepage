@@ -80,7 +80,10 @@ function draw(){
   //       break;
   //   }  
   // }
-  ctx.putImageData(frame,0,0);
+  for (var i = frames.length - 1; i >= 0; i--) {
+    ctx.putImageData(frame[i],0,0);
+  };
+  
   //window.requestAnimationFrame(draw);
 }
 
