@@ -16,7 +16,7 @@ function success(stream) {
     video.src = window.URL.createObjectURL(stream);
     video.play();
      //setup(stream);
-    setInterval(function(){draw();},30);
+    setInterval(function(){draw();},500);
 }
  
 function failure(e) {
