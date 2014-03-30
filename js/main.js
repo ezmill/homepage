@@ -60,7 +60,7 @@ var flag=true;
 $(document).ready(function(){
   $('p').hide();
   $('#box').hide();
-  $('a').click(function(){
+  $('.nav_link').click(function(){
         $('a').removeClass('link-clicked');
 
     $(this).addClass('link-clicked');
